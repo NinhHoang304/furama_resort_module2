@@ -1,6 +1,6 @@
 package models.person;
 
-public class Employee extends Person{
+public class Employee extends Person {
 
     private String employeeCode;
     private String literacy;
@@ -10,6 +10,10 @@ public class Employee extends Person{
     public Employee() {
     }
 
+    public Employee(String employeeCode) {
+        this.employeeCode = employeeCode;
+    }
+
     public Employee(String employeeCode, String literacy, String position, double salary) {
         this.employeeCode = employeeCode;
         this.literacy = literacy;
@@ -17,7 +21,8 @@ public class Employee extends Person{
         this.salary = salary;
     }
 
-    public Employee(String name, String birthday, String gender, int idCard, int phoneNumber, String email, String employeeCode, String literacy, String position, double salary) {
+    public Employee(String name, String birthday, String gender, int idCard,
+                    int phoneNumber, String email, String employeeCode, String literacy, String position, double salary) {
         super(name, birthday, gender, idCard, phoneNumber, email);
         this.employeeCode = employeeCode;
         this.literacy = literacy;
@@ -31,6 +36,14 @@ public class Employee extends Person{
                 this.literacy + "," +
                 this.position + "," +
                 this.salary;
+    }
+
+    public String getEmployeeCode() {
+        return employeeCode;
+    }
+
+    public void setEmployeeCode(String employeeCode) {
+        this.employeeCode = employeeCode;
     }
 
     public String getLiteracy() {
@@ -60,6 +73,7 @@ public class Employee extends Person{
     @Override
     public String toString() {
         return "Employee{" +
+                super.toString() +
                 "literacy='" + literacy + '\'' +
                 ", position='" + position + '\'' +
                 ", salary=" + salary +

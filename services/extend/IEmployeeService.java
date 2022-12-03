@@ -1,4 +1,9 @@
 package services.extend;
 
-public interface IEmployeeService {
+import models.person.Employee;
+import services.IFileService;
+import services.IService;
+
+public interface IEmployeeService extends IService<Employee> {
+
 }

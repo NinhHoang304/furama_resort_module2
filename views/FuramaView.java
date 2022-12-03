@@ -1,9 +1,15 @@
 package views;
 
+import controllers.EmployeeController;
+import models.person.Employee;
+import models.person.Person;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FuramaView {
-
+    private final EmployeeController employeeController = new EmployeeController();
     private final Scanner sc = new Scanner(System.in);
 
     public void displayMainMenu() {
@@ -46,13 +52,94 @@ public class FuramaView {
                         }
                         switch (optionEmployee) {
                             case 1:
+                                List<Employee> employeeList = this.employeeController.displayEmployee();
 
+                                for (Employee emp : employeeList) {
+                                    System.out.println(emp);
+                                }
+                                break;
                             case 2:
+                                System.out.println("----Please write full information to add new Employee----");
 
+                                System.out.println("Enter employee code:");
+                                String empCode = sc.nextLine();
+
+                                System.out.println("Enter employee name:");
+                                String empName = sc.nextLine();
+
+                                System.out.println("Enter employee birthday:");
+                                String empBirthday = sc.nextLine();
+
+                                System.out.println("Enter employee gender:");
+                                String empGender = sc.nextLine();
+
+                                System.out.println("Enter employee ID Card:");
+                                int empIDCard = Integer.parseInt(sc.nextLine());
+
+                                System.out.println("Enter employee phone number:");
+                                int empPhoneNumber = Integer.parseInt(sc.nextLine());
+
+                                System.out.println("Enter employee email:");
+                                String empEmail = sc.nextLine();
+
+                                System.out.println("Enter employee literacy:");
+                                String empLiteracy = sc.nextLine();
+
+                                System.out.println("Enter employee position:");
+                                String empPosition = sc.nextLine();
+
+                                System.out.println("Enter employee salary:");
+                                double empSalary = Double.parseDouble(sc.nextLine());
+
+                                Employee employee = new Employee(empName, empBirthday, empGender, empIDCard, empPhoneNumber,
+                                        empEmail, empCode, empLiteracy, empPosition, empSalary);
+                                this.employeeController.addEmployee(employee);
+                                break;
                             case 3:
+                                System.out.println("Input employee code to delete:");
+                                String deleteEmployee = sc.nextLine();
 
+                                Employee employeeCode = new Employee(deleteEmployee);
+
+                                this.employeeController.deleteEmployee(employeeCode);
+                                break;
                             case 4:
+                                System.out.println("----Please enter employee code and write full information to edit----");
 
+                                System.out.println("Enter employee code to edit this employee:");
+                                String empCodeNew = sc.nextLine();
+
+                                System.out.println("Enter new employee name:");
+                                String empNameNew = sc.nextLine();
+
+                                System.out.println("Enter new employee birthday:");
+                                String empBirthdayNew = sc.nextLine();
+
+                                System.out.println("Enter new employee gender:");
+                                String empGenderNew = sc.nextLine();
+
+                                System.out.println("Enter new employee ID Card:");
+                                int empIDCardNew = Integer.parseInt(sc.nextLine());
+
+                                System.out.println("Enter new employee phone number:");
+                                int empPhoneNumberNew = Integer.parseInt(sc.nextLine());
+
+                                System.out.println("Enter new employee email:");
+                                String empEmailNew = sc.nextLine();
+
+                                System.out.println("Enter new employee literacy:");
+                                String empLiteracyNew = sc.nextLine();
+
+                                System.out.println("Enter new employee position:");
+                                String empPositionNew = sc.nextLine();
+
+                                System.out.println("Enter new employee salary:");
+                                double empSalaryNew = Double.parseDouble(sc.nextLine());
+
+                                Employee employeeUpdate = new Employee(empNameNew, empBirthdayNew, empGenderNew, empIDCardNew,
+                                        empPhoneNumberNew, empEmailNew, empCodeNew, empLiteracyNew, empPositionNew, empSalaryNew);
+
+                                this.employeeController.editEmployee(employeeUpdate);
                             case 5:
                                 this.displayMainMenu();
                             default:
