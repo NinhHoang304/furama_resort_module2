@@ -4,20 +4,20 @@ import models.person.dependency.CustomerCode;
 
 public class Customer extends Person{
 
-    private CustomerCode customerCode;
+    private String customerCode;
     private String customerTypes;
     private String address;
 
     public Customer() {
     }
 
-    public Customer(CustomerCode customerCode, String customerTypes, String address) {
+    public Customer(String customerCode, String customerTypes, String address) {
         this.customerCode = customerCode;
         this.customerTypes = customerTypes;
         this.address = address;
     }
 
-    public Customer(String name, String birthday, String gender, int idCard, int phoneNumber, String email, CustomerCode customerCode, String customerTypes, String address) {
+    public Customer(String name, String birthday, String gender, int idCard, int phoneNumber, String email, String customerCode, String customerTypes, String address) {
         super(name, birthday, gender, idCard, phoneNumber, email);
         this.customerCode = customerCode;
         this.customerTypes = customerTypes;
@@ -29,6 +29,14 @@ public class Customer extends Person{
                 this.customerCode + "," +
                 this.customerTypes + "," +
                 this.address;
+    }
+
+    public String getCustomerCode() {
+        return customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
     }
 
     public String getCustomerTypes() {

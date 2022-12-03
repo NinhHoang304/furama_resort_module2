@@ -8,18 +8,18 @@ public class Booking implements ServiceName, CustomerCode {
     private String bookingCode;
     private String checkin;
     private String checkout;
-    private ServiceName nameService;
-    private CustomerCode customerCode;
+    private String nameServiceBooking;
+    private String customerCodeBooking;
 
     public Booking() {
     }
 
-    public Booking(String bookingCode, String checkin, String checkout, ServiceName nameService, CustomerCode customerCode) {
+    public Booking(String bookingCode, String checkin, String checkout, String nameService, String customerCode) {
         this.bookingCode = bookingCode;
         this.checkin = checkin;
         this.checkout = checkout;
-        this.nameService = nameService;
-        this.customerCode = customerCode;
+        this.nameServiceBooking = nameService;
+        this.customerCodeBooking = customerCode;
     }
 
     public String getBookingCode() {
@@ -46,20 +46,20 @@ public class Booking implements ServiceName, CustomerCode {
         this.checkout = checkout;
     }
 
-    public ServiceName getNameService() {
-        return nameService;
+    public String getNameServiceBooking() {
+        return nameServiceBooking;
     }
 
-    public void setNameService(ServiceName nameService) {
-        this.nameService = nameService;
+    public void setNameServiceBooking(String nameServiceBooking) {
+        this.nameServiceBooking = nameServiceBooking;
     }
 
-    public CustomerCode getCustomerCode() {
-        return customerCode;
+    public String getCustomerCodeBooking() {
+        return customerCodeBooking;
     }
 
-    public void setCustomerCode(CustomerCode customerCode) {
-        this.customerCode = customerCode;
+    public void setCustomerCodeBooking(String customerCodeBooking) {
+        this.customerCodeBooking = customerCodeBooking;
     }
 
     @Override
@@ -68,8 +68,8 @@ public class Booking implements ServiceName, CustomerCode {
                 "bookingCode='" + bookingCode + '\'' +
                 ", checkin='" + checkin + '\'' +
                 ", checkout='" + checkout + '\'' +
-                ", nameService=" + nameService +
-                ", customerCode=" + customerCode +
+                ", nameService=" + nameServiceBooking +
+                ", customerCode=" + customerCodeBooking +
                 '}';
     }
 }

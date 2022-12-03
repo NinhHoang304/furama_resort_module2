@@ -3,7 +3,7 @@ package models.facility;
 import models.facility.dependency.ServiceName;
 
 public abstract class Facility {
-    private ServiceName nameService;
+    private String nameService;
     private double usableArea;
     private double rentCost;
     private int maximumPeople;
@@ -12,7 +12,7 @@ public abstract class Facility {
     public Facility() {
     }
 
-    public Facility(ServiceName nameService, double usableArea, double rentCost,
+    public Facility(String nameService, double usableArea, double rentCost,
                     int maximumPeople, String rentTypes) {
         this.nameService = nameService;
         this.usableArea = usableArea;
@@ -29,11 +29,11 @@ public abstract class Facility {
                 this.rentTypes;
     }
 
-    public ServiceName getNameService() {
+    public String getNameService() {
         return nameService;
     }
 
-    public void setNameService(ServiceName nameService) {
+    public void setNameService(String nameService) {
         this.nameService = nameService;
     }
 

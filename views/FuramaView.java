@@ -1,15 +1,22 @@
 package views;
 
+import common.exception.NotFoundInDatabase;
+import controllers.CustomerController;
 import controllers.EmployeeController;
+import models.person.Customer;
 import models.person.Employee;
 import models.person.Person;
+import models.person.dependency.CustomerCode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class FuramaView {
     private final EmployeeController employeeController = new EmployeeController();
+
+    private final CustomerController customerController = new CustomerController();
     private final Scanner sc = new Scanner(System.in);
 
     public void displayMainMenu() {
@@ -53,7 +60,6 @@ public class FuramaView {
                         switch (optionEmployee) {
                             case 1:
                                 List<Employee> employeeList = this.employeeController.displayEmployee();
-
                                 for (Employee emp : employeeList) {
                                     System.out.println(emp);
                                 }
@@ -140,6 +146,7 @@ public class FuramaView {
                                         empPhoneNumberNew, empEmailNew, empCodeNew, empLiteracyNew, empPositionNew, empSalaryNew);
 
                                 this.employeeController.editEmployee(employeeUpdate);
+                                break;
                             case 5:
                                 this.displayMainMenu();
                             default:
@@ -166,11 +173,79 @@ public class FuramaView {
 
                         switch (optionCustomer) {
                             case 1:
-
+                                List<Customer> customerList = this.customerController.displayCustomer();
+                                for (Customer customer : customerList) {
+                                    System.out.println(customer);
+                                }
+                                break;
                             case 2:
+                                System.out.println("----Please write full information to add new Customer----");
 
+                                System.out.println("Enter customer code:");
+                                String cusCode = sc.nextLine();
+
+                                System.out.println("Enter customer name:");
+                                String cusName = sc.nextLine();
+
+                                System.out.println("Enter customer birthday:");
+                                String cusBirthday = sc.nextLine();
+
+                                System.out.println("Enter customer gender:");
+                                String cusGender = sc.nextLine();
+
+                                System.out.println("Enter customer ID Card:");
+                                int cusIDCard = Integer.parseInt(sc.nextLine());
+
+                                System.out.println("Enter customer phone number:");
+                                int cusPhoneNumber = Integer.parseInt(sc.nextLine());
+
+                                System.out.println("Enter customer email:");
+                                String cusEmail = sc.nextLine();
+
+                                System.out.println("Enter customer type:");
+                                String cusTypes = sc.nextLine();
+
+                                System.out.println("Enter customer address:");
+                                String cusAddress = sc.nextLine();
+
+                                Customer customerAdd = new Customer(cusName, cusBirthday, cusGender, cusIDCard,
+                                        cusPhoneNumber, cusEmail, cusCode, cusTypes, cusAddress);
+                                this.customerController.addCustomer(customerAdd);
+                                break;
                             case 3:
+                                System.out.println("----Please enter customer code and write full information to edit----");
 
+                                System.out.println("Enter customer code to edit this customer:");
+                                String cusCodeNew = sc.nextLine();
+
+                                System.out.println("Enter new customer name:");
+                                String cusNameNew = sc.nextLine();
+
+                                System.out.println("Enter new customer birthday:");
+                                String cusBirthdayNew = sc.nextLine();
+
+                                System.out.println("Enter new customer gender:");
+                                String cusGenderNew = sc.nextLine();
+
+                                System.out.println("Enter new customer ID Card:");
+                                int cusIDCardNew = Integer.parseInt(sc.nextLine());
+
+                                System.out.println("Enter new customer phone number:");
+                                int cusPhoneNumberNew = Integer.parseInt(sc.nextLine());
+
+                                System.out.println("Enter new customer email:");
+                                String cusEmailNew = sc.nextLine();
+
+                                System.out.println("Enter new customer type:");
+                                String cusTypesNew = sc.nextLine();
+
+                                System.out.println("Enter new customer address:");
+                                String cusAddressNew = sc.nextLine();
+
+                                Customer customerUpdate = new Customer(cusNameNew, cusBirthdayNew, cusGenderNew, cusIDCardNew,
+                                        cusPhoneNumberNew, cusEmailNew, cusCodeNew, cusTypesNew, cusAddressNew);
+                                this.customerController.editCustomer(customerUpdate);
+                                break;
                             case 4:
                                 this.displayMainMenu();
                             default:

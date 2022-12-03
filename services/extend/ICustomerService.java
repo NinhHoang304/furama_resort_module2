@@ -1,4 +1,7 @@
 package services.extend;
 
-public interface ICustomerService {
+import models.person.Customer;
+import services.IService;
+
+public interface ICustomerService extends IService<Customer> {
 }

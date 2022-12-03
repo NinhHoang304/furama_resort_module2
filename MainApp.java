@@ -1,3 +1,4 @@
+import common.exception.NotFoundInDatabase;
 import views.FuramaView;
 
 public class MainApp {
