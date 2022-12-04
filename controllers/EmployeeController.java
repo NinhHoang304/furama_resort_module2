@@ -3,34 +3,34 @@ package controllers;
 import common.exception.ExistException;
 import common.exception.NotFoundInDatabase;
 import models.person.Employee;
-import services.IService;
+import services.extend.IEmployeeService;
 import services.extend.impl.EmployeeServiceImpl;
 
 import java.util.List;
 
 public class EmployeeController {
 
-    private final IService<Employee> service = new EmployeeServiceImpl();
+    private final IEmployeeService employeeService = new EmployeeServiceImpl();
 
     public List<Employee> displayEmployee() {
-        return this.service.display();
+        return this.employeeService.display();
     }
 
     public void addEmployee(Employee employee) {
         try {
-            this.service.add(employee);
+            this.employeeService.add(employee);
         } catch (ExistException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void editEmployee(Employee employee) {
-        this.service.edit(employee);
+        this.employeeService.edit(employee);
     }
 
     public void deleteEmployee(Employee employee) {
         try {
-            this.service.delete(employee);
+            this.employeeService.delete(employee);
         } catch (NotFoundInDatabase e) {
             throw new RuntimeException(e);
         }

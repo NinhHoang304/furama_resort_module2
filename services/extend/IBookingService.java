@@ -1,4 +1,6 @@
 package services.extend;
 
-public interface IBookingService {
+import services.IService;
+
+public interface IBookingService extends IService {
 }

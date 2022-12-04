@@ -3,20 +3,22 @@ package views;
 import common.exception.NotFoundInDatabase;
 import controllers.CustomerController;
 import controllers.EmployeeController;
+import controllers.FacilityController;
+import models.facility.Facility;
+import models.facility.Room;
+import models.facility.Villa;
 import models.person.Customer;
 import models.person.Employee;
 import models.person.Person;
 import models.person.dependency.CustomerCode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class FuramaView {
     private final EmployeeController employeeController = new EmployeeController();
-
     private final CustomerController customerController = new CustomerController();
+
+    private final FacilityController facilityController = new FacilityController();
     private final Scanner sc = new Scanner(System.in);
 
     public void displayMainMenu() {
@@ -65,7 +67,7 @@ public class FuramaView {
                                 }
                                 break;
                             case 2:
-                                System.out.println("----Please write full information to add new Employee----");
+                                System.out.println("----Enter information to add new employee----");
 
                                 System.out.println("Enter employee code:");
                                 String empCode = sc.nextLine();
@@ -110,7 +112,7 @@ public class FuramaView {
                                 this.employeeController.deleteEmployee(employeeCode);
                                 break;
                             case 4:
-                                System.out.println("----Please enter employee code and write full information to edit----");
+                                System.out.println("----Please enter employee code to edit----");
 
                                 System.out.println("Enter employee code to edit this employee:");
                                 String empCodeNew = sc.nextLine();
@@ -179,7 +181,7 @@ public class FuramaView {
                                 }
                                 break;
                             case 2:
-                                System.out.println("----Please write full information to add new Customer----");
+                                System.out.println("----Enter information to add new customer----");
 
                                 System.out.println("Enter customer code:");
                                 String cusCode = sc.nextLine();
@@ -213,7 +215,7 @@ public class FuramaView {
                                 this.customerController.addCustomer(customerAdd);
                                 break;
                             case 3:
-                                System.out.println("----Please enter customer code and write full information to edit----");
+                                System.out.println("----Please enter customer code to edit----");
 
                                 System.out.println("Enter customer code to edit this customer:");
                                 String cusCodeNew = sc.nextLine();
@@ -272,11 +274,90 @@ public class FuramaView {
 
                         switch (optionFacility) {
                             case 1:
-
+                                this.facilityController.displayFacility();
+                                break;
                             case 2:
+                                do {
+                                    System.out.println("------------------------");
+                                    System.out.println("1. Add new villa");
+                                    System.out.println("2. Add new room");
+                                    System.out.println("3. Back to menu");
+                                    System.out.print("Enter your option: ");
+                                    int optionFacilityNew;
+                                    try {
+                                        optionFacilityNew = Integer.parseInt(sc.nextLine());
+                                    } catch (NumberFormatException e) {
+                                        System.out.println(e.getMessage());
+                                        continue;
+                                    }
 
+                                    switch (optionFacilityNew) {
+                                        case 1:
+                                            System.out.println("----Enter information to add new villa----");
+
+                                            System.out.println("Enter name service (villa) + 0-9: ");
+                                            String nameVilla = sc.nextLine();
+
+                                            System.out.println("Enter usable area: ");
+                                            double usableAreaVilla = Double.parseDouble(sc.nextLine());
+
+                                            System.out.println("Enter cost for rent villa: ");
+                                            double costVilla = Double.parseDouble(sc.nextLine());
+
+                                            System.out.println("Enter maximum people for rent villa: ");
+                                            int maxPeopleVilla = Integer.parseInt(sc.nextLine());
+
+                                            System.out.println("Enter rent type (Day, Month, Year): ");
+                                            String rentTypesVilla = sc.nextLine();
+
+                                            System.out.println("Enter villa type: ");
+                                            String villaType = sc.nextLine();
+
+                                            System.out.println("Enter pool area: ");
+                                            Double poolArea = Double.parseDouble(sc.nextLine());
+
+                                            System.out.println("Enter floor of villa: ");
+                                            int floor = Integer.parseInt(sc.nextLine());
+
+                                            Villa villa = new Villa(nameVilla, usableAreaVilla, costVilla, maxPeopleVilla,
+                                                    rentTypesVilla, villaType, poolArea, floor);
+                                            this.facilityController.addFacility(villa);
+
+                                            break;
+                                        case 2:
+                                            System.out.println("----Enter information to add new room----");
+
+                                            System.out.println("Enter name service (villa) + 0-9: ");
+                                            String nameRoom = sc.nextLine();
+
+                                            System.out.println("Enter usable area: ");
+                                            double usableAreaRoom = Double.parseDouble(sc.nextLine());
+
+                                            System.out.println("Enter cost for rent villa: ");
+                                            double costRoom = Double.parseDouble(sc.nextLine());
+
+                                            System.out.println("Enter maximum people for rent villa: ");
+                                            int maxPeopleRoom = Integer.parseInt(sc.nextLine());
+
+                                            System.out.println("Enter rent type (Day, Month, Year): ");
+                                            String rentTypesRoom = sc.nextLine();
+
+                                            System.out.println("Enter free service for room: ");
+                                            String freeService = sc.nextLine();
+
+                                            Room room = new Room(nameRoom, usableAreaRoom, costRoom, maxPeopleRoom, rentTypesRoom, freeService);
+                                            this.facilityController.addFacility(room);
+
+                                            break;
+                                        case 3:
+                                            this.displayMainMenu();
+                                        default:
+                                            System.out.println("Invalid choice");
+                                    }
+                                } while (true);
                             case 3:
-
+                                this.facilityController.displayFacilityMaintenance();
+                                break;
                             case 4:
                                 this.displayMainMenu();
                             default:

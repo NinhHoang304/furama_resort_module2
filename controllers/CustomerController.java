@@ -3,6 +3,7 @@ package controllers;
 import common.exception.ExistException;
 import models.person.Customer;
 import services.IService;
+import services.extend.ICustomerService;
 import services.extend.impl.CustomerServiceImpl;
 
 import java.util.LinkedList;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class CustomerController {
 
-    private final IService<Customer> customerService = new CustomerServiceImpl();
+    private final ICustomerService customerService = new CustomerServiceImpl();
 
     public List<Customer> displayCustomer() {
         return this.customerService.display();

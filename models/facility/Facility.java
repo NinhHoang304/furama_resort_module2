@@ -3,6 +3,7 @@ package models.facility;
 import models.facility.dependency.ServiceName;
 
 public abstract class Facility {
+
     private String nameService;
     private double usableArea;
     private double rentCost;
@@ -12,8 +13,7 @@ public abstract class Facility {
     public Facility() {
     }
 
-    public Facility(String nameService, double usableArea, double rentCost,
-                    int maximumPeople, String rentTypes) {
+    public Facility(String nameService, double usableArea, double rentCost, int maximumPeople, String rentTypes) {
         this.nameService = nameService;
         this.usableArea = usableArea;
         this.rentCost = rentCost;
@@ -67,6 +67,22 @@ public abstract class Facility {
 
     public void setRentTypes(String rentTypes) {
         this.rentTypes = rentTypes;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Facility){
+            Facility other = (Facility) obj;
+            if (this.nameService.equals(other.nameService)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.nameService.hashCode();
     }
 
     @Override
