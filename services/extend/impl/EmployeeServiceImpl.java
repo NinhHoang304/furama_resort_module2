@@ -2,6 +2,7 @@ package services.extend.impl;
 
 import common.exception.ExistException;
 import common.exception.NotFoundInDatabase;
+import models.Booking;
 import models.person.Employee;
 import models.person.Person;
 import services.extend.IEmployeeService;

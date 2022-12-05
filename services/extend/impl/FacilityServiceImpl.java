@@ -23,16 +23,16 @@ public class FacilityServiceImpl implements IFacilityService {
 
 
     static {
-        Facility villa = new Villa("Villa", 200.0, 1000,
+        Facility villa = new Villa("SVVL-0001", "Villa", 200.0, 1000,
                 4, "Day", "Vip", 40.0, 1);
 
-        Facility villa1 = new Villa("Villa01", 200.0, 1000,
+        Facility villa1 = new Villa("SVVL-0002", "Villa ", 200.0, 1000,
                 4, "Day", "Vip", 40.0, 2);
 
-        Facility room = new Room("Room", 200.0, 1000,
+        Facility room = new Room("SVRO-0001", "Room", 200.0, 1000,
                 4, "Day", "Cafe");
 
-        Facility room1 = new Room("Room", 200.0, 1000,
+        Facility room1 = new Room("SVRO-0002", "Room", 200.0, 1000,
                 4, "Day", "Cafe");
 
         facilityList.put(villa, 0);
@@ -74,7 +74,7 @@ public class FacilityServiceImpl implements IFacilityService {
     }
 
     @Override
-    public void delete(Facility object) throws NotFoundInDatabase {
+    public void delete(Facility object) {
 
     }
 

@@ -4,6 +4,7 @@ import models.facility.dependency.ServiceName;
 
 public abstract class Facility {
 
+    private String idFacility;
     private String nameService;
     private double usableArea;
     private double rentCost;
@@ -13,7 +14,8 @@ public abstract class Facility {
     public Facility() {
     }
 
-    public Facility(String nameService, double usableArea, double rentCost, int maximumPeople, String rentTypes) {
+    public Facility(String idFacility, String nameService, double usableArea, double rentCost, int maximumPeople, String rentTypes) {
+        this.idFacility = idFacility;
         this.nameService = nameService;
         this.usableArea = usableArea;
         this.rentCost = rentCost;
@@ -22,11 +24,20 @@ public abstract class Facility {
     }
 
     public String formatCSVFileFacility() {
-        return this.nameService + "," +
+        return this.idFacility + "," +
+                this.nameService + "," +
                 this.usableArea + "," +
                 this.rentCost + "," +
                 this.maximumPeople + "," +
                 this.rentTypes;
+    }
+
+    public String getIdFacility() {
+        return idFacility;
+    }
+
+    public void setIdFacility(String idFacility) {
+        this.idFacility = idFacility;
     }
 
     public String getNameService() {
@@ -73,7 +84,7 @@ public abstract class Facility {
     public boolean equals(Object obj) {
         if (obj instanceof Facility){
             Facility other = (Facility) obj;
-            if (this.nameService.equals(other.nameService)){
+            if (this.idFacility.equals(other.idFacility)){
                 return true;
             }
         }
@@ -82,13 +93,14 @@ public abstract class Facility {
 
     @Override
     public int hashCode() {
-        return this.nameService.hashCode();
+        return this.idFacility.hashCode();
     }
 
     @Override
     public String toString() {
         return "Facility{" +
-                "nameService='" + nameService + '\'' +
+                "idFacility='" + idFacility + '\'' +
+                ", nameService='" + nameService + '\'' +
                 ", usableArea=" + usableArea +
                 ", rentCost=" + rentCost +
                 ", maximumPeople=" + maximumPeople +
