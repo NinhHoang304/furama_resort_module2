@@ -14,7 +14,11 @@ public class EmployeeController {
     private final IEmployeeService employeeService = new EmployeeServiceImpl();
 
     public List<Employee> displayEmployee() {
-        return this.employeeService.getList();
+        try {
+            return this.employeeService.getList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addEmployee(Employee employee) {
@@ -26,12 +30,20 @@ public class EmployeeController {
     }
 
     public void editEmployee(Employee employee) {
-        this.employeeService.edit(employee);
+        try {
+            this.employeeService.edit(employee);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void deleteEmployee(Employee employee) {
         try {
-            this.employeeService.delete(employee);
+            try {
+                this.employeeService.delete(employee);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } catch (NotFoundInDatabase e) {
             throw new RuntimeException(e);
         }

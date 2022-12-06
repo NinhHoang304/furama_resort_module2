@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface IService<O> {
 
-    List<O> getList();
+    List<O> getList() throws IOException;
 
     void add(O object) throws ExistException, IOException;
 
-    void edit(O object);
+    void edit(O object) throws IOException;
 
-    void delete(O object) throws NotFoundInDatabase;
+    void delete(O object) throws NotFoundInDatabase, IOException;
 }

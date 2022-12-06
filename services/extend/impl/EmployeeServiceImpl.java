@@ -6,54 +6,69 @@ import models.Booking;
 import models.person.Employee;
 import models.person.Person;
 import services.extend.IEmployeeService;
+import services.impl.EmployeeIOService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class EmployeeServiceImpl implements IEmployeeService {
 
-    private static final List<Employee> employeeList;
+    private final EmployeeIOService employeeIOService = new EmployeeIOService();
 
-    static {
-        employeeList = new ArrayList<>();
+    private final String PATH_FILE_EMPLOYEE = "src/data/employee.csv";
+
+//    private static final List<Employee> employeeList = new ArrayList<>();
+
+//    static {
+//        Employee employee = new Employee("Hoang", "30/04/1996", "Nam", 123456,
+//                12345, "hoang@gmail.com", "NV-01", "Tien Sy", "CEO", 10000000);
+//        employeeList.add(employee);
+//    }
+
+    @Override
+    public List<Employee> getList() throws IOException {
+        return this.employeeIOService.readFile(PATH_FILE_EMPLOYEE);
     }
 
     @Override
-    public List<Employee> getList() {
-        return EmployeeServiceImpl.employeeList;
-    }
-
-    @Override
-    public void add(Employee object) throws ExistException {
+    public void add(Employee employee) throws ExistException, IOException {
+        List<Employee> employeeList = this.employeeIOService.readFile(PATH_FILE_EMPLOYEE);
         for (Employee emp : employeeList) {
-            if (Objects.equals(emp.getEmployeeCode(), object.getEmployeeCode())) {
+            if (Objects.equals(emp.getEmployeeCode(), employee.getEmployeeCode())) {
                 throw new ExistException();
             }
         }
-        employeeList.add(object);
+
+        employeeList.add(employee);
+        this.employeeIOService.writeFile(PATH_FILE_EMPLOYEE, employeeList);
     }
 
     @Override
-    public void edit(Employee object) {
+    public void edit(Employee employee) throws IOException {
+        List<Employee> employeeList = this.employeeIOService.readFile(PATH_FILE_EMPLOYEE);
         for (Employee emp : employeeList) {
-            if (Objects.equals(emp.getEmployeeCode(), object.getEmployeeCode())) {
-                emp.setName(object.getName());
-                emp.setBirthday(object.getBirthday());
-                emp.setGender(object.getGender());
-                emp.setIdCard(object.getIdCard());
-                emp.setPhoneNumber(object.getPhoneNumber());
-                emp.setEmail(object.getEmail());
-                emp.setLiteracy(object.getLiteracy());
-                emp.setPosition(object.getPosition());
-                emp.setSalary(object.getSalary());
+            if (Objects.equals(emp.getEmployeeCode(), employee.getEmployeeCode())) {
+                emp.setName(employee.getName());
+                emp.setBirthday(employee.getBirthday());
+                emp.setGender(employee.getGender());
+                emp.setIdCard(employee.getIdCard());
+                emp.setPhoneNumber(employee.getPhoneNumber());
+                emp.setEmail(employee.getEmail());
+                emp.setLiteracy(employee.getLiteracy());
+                emp.setPosition(employee.getPosition());
+                emp.setSalary(employee.getSalary());
                 break;
             }
         }
+
+        this.employeeIOService.writeFile(PATH_FILE_EMPLOYEE, employeeList);
     }
 
     @Override
-    public void delete(Employee object) throws NotFoundInDatabase {
+    public void delete(Employee object) throws NotFoundInDatabase, IOException {
+        List<Employee> employeeList = this.employeeIOService.readFile(PATH_FILE_EMPLOYEE);
         Employee deleteEmployee = null;
         for (Employee emp : employeeList) {
             if (Objects.equals(emp.getEmployeeCode(), object.getEmployeeCode())) {
@@ -67,5 +82,6 @@ public class EmployeeServiceImpl implements IEmployeeService {
         }
 
         employeeList.remove(deleteEmployee);
+        this.employeeIOService.writeFile(PATH_FILE_EMPLOYEE, employeeList);
     }
 }

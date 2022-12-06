@@ -13,7 +13,11 @@ public class CustomerController {
     private final ICustomerService customerService = new CustomerServiceImpl();
 
     public List<Customer> displayCustomer() {
-        return this.customerService.getList();
+        try {
+            return this.customerService.getList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addCustomer(Customer customer) {
@@ -25,6 +29,10 @@ public class CustomerController {
     }
 
     public void editCustomer(Customer customer) {
-        this.customerService.edit(customer);
+        try {
+            this.customerService.edit(customer);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
