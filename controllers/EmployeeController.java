@@ -6,6 +6,7 @@ import models.person.Employee;
 import services.extend.IEmployeeService;
 import services.extend.impl.EmployeeServiceImpl;
 
+import java.io.IOException;
 import java.util.List;
 
 public class EmployeeController {
@@ -13,13 +14,13 @@ public class EmployeeController {
     private final IEmployeeService employeeService = new EmployeeServiceImpl();
 
     public List<Employee> displayEmployee() {
-        return this.employeeService.display();
+        return this.employeeService.getList();
     }
 
     public void addEmployee(Employee employee) {
         try {
             this.employeeService.add(employee);
-        } catch (ExistException e) {
+        } catch (ExistException | IOException e) {
             throw new RuntimeException(e);
         }
     }

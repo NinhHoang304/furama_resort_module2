@@ -11,10 +11,10 @@ public abstract class Facility {
     private int maximumPeople;
     private String rentTypes;
 
-    public Facility() {
+    protected Facility() {
     }
 
-    public Facility(String idFacility, String nameService, double usableArea, double rentCost, int maximumPeople, String rentTypes) {
+    protected Facility(String idFacility, String nameService, double usableArea, double rentCost, int maximumPeople, String rentTypes) {
         this.idFacility = idFacility;
         this.nameService = nameService;
         this.usableArea = usableArea;

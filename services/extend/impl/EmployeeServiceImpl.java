@@ -20,7 +20,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public List<Employee> display() {
+    public List<Employee> getList() {
         return EmployeeServiceImpl.employeeList;
     }
 

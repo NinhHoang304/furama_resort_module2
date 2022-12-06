@@ -108,9 +108,9 @@ public class FuramaView {
                                 break;
                             case 3:
                                 System.out.println("Input employee code to delete:");
-                                String deleteEmployee = sc.nextLine();
+                                String codeEmp = sc.nextLine();
 
-                                Employee employeeCode = new Employee(deleteEmployee);
+                                Employee employeeCode = new Employee(codeEmp);
 
                                 this.employeeController.deleteEmployee(employeeCode);
                                 break;
@@ -446,7 +446,7 @@ public class FuramaView {
                 System.out.println("Add Successful!");
                 break;
             }else{
-                System.out.println("Input invalid. Please try again!");
+                System.err.println("Input invalid. Please try again!");
             }
         }
 

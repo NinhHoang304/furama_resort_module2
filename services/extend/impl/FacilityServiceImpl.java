@@ -1,12 +1,14 @@
 package services.extend.impl;
 
-import common.exception.ExistException;
-import common.exception.NotFoundInDatabase;
 import models.facility.Facility;
 import models.facility.Room;
 import models.facility.Villa;
+import services.IFileMapService;
 import services.extend.IFacilityService;
+import services.impl.RoomIOService;
+import services.impl.VillaIOService;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +17,12 @@ public class FacilityServiceImpl implements IFacilityService {
 
     private static final Map<Facility, Integer> facilityList = new LinkedHashMap<>();
 
-    private int countNewVilla = 1;
+    private final IFileMapService<Room, Integer> roomIOService = new RoomIOService();
 
-    private int countNewRoom = 1;
+    private final IFileMapService<Villa, Integer> villaIOService = new VillaIOService();
 
-    private int COUNT = 1;
-
+    private final String PATH_FILE_VILLA = "src/data/villa.csv";
+    private final String PATH_FILE_ROOM = "src/data/room.csv";
 
     static {
         Facility villa = new Villa("SVVL-0001", "Villa", 200.0, 1000,
@@ -42,14 +44,14 @@ public class FacilityServiceImpl implements IFacilityService {
     }
 
     @Override
-    public void displayFacility() {
+    public void getFacility() {
         for (Map.Entry<Facility, Integer> entry : facilityList.entrySet()) {
             System.out.println(entry);
         }
     }
 
     @Override
-    public void displayFacilityMaintenance() {
+    public void getFacilityMaintenance() {
         for (Map.Entry<Facility, Integer> entry : facilityList.entrySet()) {
             if (entry.getValue() >= 5) {
                 System.out.println(entry);
@@ -58,13 +60,17 @@ public class FacilityServiceImpl implements IFacilityService {
     }
 
     @Override
-    public void add(Facility facility) {
+    public void add(Facility facility) throws IOException {
         if (facility instanceof Villa) {
             Villa villa = (Villa) facility;
             facilityList.put(villa, 0);
+            Map<Villa, Integer> villaList = this.villaIOService.readFile(PATH_FILE_VILLA);
+            this.villaIOService.writeFile(PATH_FILE_VILLA, villaList);
         } else if (facility instanceof Room) {
             Room room = (Room) facility;
             facilityList.put(room, 0);
+            Map<Room, Integer> roomList = this.roomIOService.readFile(PATH_FILE_ROOM);
+            this.roomIOService.writeFile(PATH_FILE_ROOM, roomList);
         }
     }
 
@@ -79,7 +85,7 @@ public class FacilityServiceImpl implements IFacilityService {
     }
 
     @Override
-    public List<Facility> display() {
+    public List<Facility> getList() {
         return null;
     }
 }

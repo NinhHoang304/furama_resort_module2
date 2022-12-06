@@ -18,7 +18,7 @@ public class CustomerServiceImpl implements ICustomerService {
         customerList = new LinkedList<>();
     }
     @Override
-    public List<Customer> display() {
+    public List<Customer> getList() {
         return CustomerServiceImpl.customerList;
     }
 

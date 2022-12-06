@@ -9,10 +9,10 @@ public abstract class Person {
     private int phoneNumber;
     private String email;
 
-    public Person() {
+    protected Person() {
     }
 
-    public Person(String name, String birthday, String gender, int idCard, int phoneNumber, String email) {
+    protected Person(String name, String birthday, String gender, int idCard, int phoneNumber, String email) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;

@@ -3,15 +3,16 @@ package services;
 import common.exception.ExistException;
 import common.exception.NotFoundInDatabase;
 
+import java.io.IOException;
 import java.util.List;
 
-public interface IService<Object> {
+public interface IService<O> {
 
-    List<Object> display();
+    List<O> getList();
 
-    void add(Object object) throws ExistException;
+    void add(O object) throws ExistException, IOException;
 
-    void edit(Object object);
+    void edit(O object);
 
-    void delete(Object object) throws NotFoundInDatabase;
+    void delete(O object) throws NotFoundInDatabase;
 }
