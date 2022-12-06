@@ -44,14 +44,28 @@ public class FacilityServiceImpl implements IFacilityService {
     }
 
     @Override
-    public void getFacility() {
+    public void getFacility() throws IOException {
+        // TODO get all villa list in villa.csv -> push all villa list in facility list
+        Map<Villa, Integer> villaList = this.villaIOService.readFile(PATH_FILE_VILLA);
+        facilityList.putAll(villaList);
+        //TODO get all room list in room.csv -> push all room list in facility list
+        Map<Room, Integer> roomList = this.roomIOService.readFile(PATH_FILE_ROOM);
+        facilityList.putAll(roomList);
+        //TODO display all
         for (Map.Entry<Facility, Integer> entry : facilityList.entrySet()) {
             System.out.println(entry);
         }
     }
 
     @Override
-    public void getFacilityMaintenance() {
+    public void getFacilityMaintenance() throws IOException {
+        // TODO get all villa list in villa.csv -> push all villa list in facility list
+        Map<Villa, Integer> villaList = this.villaIOService.readFile(PATH_FILE_VILLA);
+        facilityList.putAll(villaList);
+        //TODO get all room list in room.csv -> push all room list in facility list
+        Map<Room, Integer> roomList = this.roomIOService.readFile(PATH_FILE_ROOM);
+        facilityList.putAll(roomList);
+        //TODO display list maintenance when value >= 5
         for (Map.Entry<Facility, Integer> entry : facilityList.entrySet()) {
             if (entry.getValue() >= 5) {
                 System.out.println(entry);
@@ -60,18 +74,31 @@ public class FacilityServiceImpl implements IFacilityService {
     }
 
     @Override
+    public void addNewVilla(Villa villa) throws IOException {
+        Map<Villa, Integer> villaList = this.villaIOService.readFile(PATH_FILE_VILLA);
+        villaList.put(villa, 0);
+        this.villaIOService.writeFile(PATH_FILE_VILLA, villaList);
+    }
+
+    @Override
+    public void addNewRoom(Room room) throws IOException {
+        Map<Room, Integer> roomList = this.roomIOService.readFile(PATH_FILE_ROOM);
+        roomList.put(room, 0);
+        this.roomIOService.writeFile(PATH_FILE_ROOM, roomList);
+    }
+
+    @Override
     public void add(Facility facility) throws IOException {
-        if (facility instanceof Villa) {
-            Villa villa = (Villa) facility;
-            facilityList.put(villa, 0);
-            Map<Villa, Integer> villaList = this.villaIOService.readFile(PATH_FILE_VILLA);
-            this.villaIOService.writeFile(PATH_FILE_VILLA, villaList);
-        } else if (facility instanceof Room) {
-            Room room = (Room) facility;
-            facilityList.put(room, 0);
-            Map<Room, Integer> roomList = this.roomIOService.readFile(PATH_FILE_ROOM);
-            this.roomIOService.writeFile(PATH_FILE_ROOM, roomList);
-        }
+//        if (facility instanceof Villa) {
+//            Villa villa = (Villa) facility;
+//            facilityList.put(villa, 0);
+//            this.villaIOService.writeFile(PATH_FILE_VILLA, villaList);
+//        } else if (facility instanceof Room) {
+//            Room room = (Room) facility;
+//            facilityList.put(room, 0);
+//            Map<Room, Integer> roomList = this.roomIOService.readFile(PATH_FILE_ROOM);
+//            this.roomIOService.writeFile(PATH_FILE_ROOM, roomList);
+//        }
     }
 
     @Override

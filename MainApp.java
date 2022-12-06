@@ -1,4 +1,5 @@
 import common.exception.NotFoundInDatabase;
+import services.extend.impl.FacilityServiceImpl;
 import views.FuramaView;
 
 public class MainApp {

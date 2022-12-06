@@ -12,6 +12,7 @@ import models.person.Customer;
 import models.person.Employee;
 import models.person.Person;
 import models.person.dependency.CustomerCode;
+import services.extend.impl.FacilityServiceImpl;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -327,7 +328,7 @@ public class FuramaView {
 
                                             Villa villa = new Villa(idFacilityVilla, nameVilla, usableAreaVilla, costVilla, maxPeopleVilla,
                                                     rentTypesVilla, villaType, poolArea, floor);
-                                            this.facilityController.addFacility(villa);
+                                            this.facilityController.addNewVilla(villa);
 
                                             break;
                                         case 2:
@@ -355,7 +356,7 @@ public class FuramaView {
                                             String freeService = validateFacility(this.regexFacility.REGEX_FREE_SERVICE);
 
                                             Room room = new Room(idFacilityRoom, nameRoom, usableAreaRoom, costRoom, maxPeopleRoom, rentTypesRoom, freeService);
-                                            this.facilityController.addFacility(room);
+                                            this.facilityController.addNewRoom(room);
 
                                             break;
                                         case 3:
