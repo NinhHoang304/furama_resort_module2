@@ -1,6 +1,7 @@
 package services.extend.impl;
 
 import common.exception.ExistException;
+import common.exception.NotFoundException;
 import common.exception.NotFoundInDatabase;
 import models.Booking;
 import models.person.Employee;
@@ -67,7 +68,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public void delete(Employee object) throws NotFoundInDatabase, IOException {
+    public void delete(Employee object) throws IOException, NotFoundException {
         List<Employee> employeeList = this.employeeIOService.readFile(PATH_FILE_EMPLOYEE);
         Employee deleteEmployee = null;
         for (Employee emp : employeeList) {
@@ -78,7 +79,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
         }
 
         if (deleteEmployee == null) {
-            throw new NotFoundInDatabase();
+            throw new NotFoundException("Employee not exist, pls try input again to delete");
         }
 
         employeeList.remove(deleteEmployee);

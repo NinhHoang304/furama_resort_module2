@@ -1,6 +1,7 @@
 package services;
 
 import common.exception.ExistException;
+import common.exception.NotFoundException;
 import common.exception.NotFoundInDatabase;
 
 import java.io.IOException;
@@ -14,5 +15,5 @@ public interface IService<O> {
 
     void edit(O object) throws IOException;
 
-    void delete(O object) throws NotFoundInDatabase, IOException;
+    void delete(O object) throws NotFoundInDatabase, IOException, NotFoundException;
 }
