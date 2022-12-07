@@ -28,4 +28,9 @@ public class BookingServiceImpl implements IBookingService {
     public void delete(Booking object) throws NotFoundInDatabase {
 
     }
+
+    @Override
+    public boolean checkId(String id) {
+        return false;
+    }
 }

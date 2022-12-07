@@ -47,8 +47,13 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public void edit(Employee employee) throws IOException {
+    public void edit(Employee employee) throws IOException, ExistException {
         List<Employee> employeeList = this.employeeIOService.readFile(PATH_FILE_EMPLOYEE);
+        for (Employee emp : employeeList) {
+            if (Objects.equals(emp.getEmployeeCode(), employee.getEmployeeCode())) {
+                throw new ExistException();
+            }
+        }
         for (Employee emp : employeeList) {
             if (Objects.equals(emp.getEmployeeCode(), employee.getEmployeeCode())) {
                 emp.setName(employee.getName());
@@ -60,6 +65,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
                 emp.setLiteracy(employee.getLiteracy());
                 emp.setPosition(employee.getPosition());
                 emp.setSalary(employee.getSalary());
+                break;
+            } else {
+                System.err.println("Invalid employee code, try again");
                 break;
             }
         }
@@ -84,5 +92,16 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
         employeeList.remove(deleteEmployee);
         this.employeeIOService.writeFile(PATH_FILE_EMPLOYEE, employeeList);
+    }
+
+    @Override
+    public boolean checkId(String empCode) throws IOException {
+        List<Employee> employeeList = this.employeeIOService.readFile(PATH_FILE_EMPLOYEE);
+        for (Employee emp : employeeList) {
+            if (empCode.equals(emp.getEmployeeCode())){
+                return true;
+            }
+        }
+        return false;
     }
 }

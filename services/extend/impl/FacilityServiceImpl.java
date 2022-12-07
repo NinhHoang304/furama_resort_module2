@@ -88,17 +88,13 @@ public class FacilityServiceImpl implements IFacilityService {
     }
 
     @Override
+    public boolean checkId(String id) {
+        return false;
+    }
+
+    @Override
     public void add(Facility facility) throws IOException {
-//        if (facility instanceof Villa) {
-//            Villa villa = (Villa) facility;
-//            facilityList.put(villa, 0);
-//            this.villaIOService.writeFile(PATH_FILE_VILLA, villaList);
-//        } else if (facility instanceof Room) {
-//            Room room = (Room) facility;
-//            facilityList.put(room, 0);
-//            Map<Room, Integer> roomList = this.roomIOService.readFile(PATH_FILE_ROOM);
-//            this.roomIOService.writeFile(PATH_FILE_ROOM, roomList);
-//        }
+
     }
 
     @Override
@@ -110,6 +106,7 @@ public class FacilityServiceImpl implements IFacilityService {
     public void delete(Facility object) {
 
     }
+
 
     @Override
     public List<Facility> getList() {

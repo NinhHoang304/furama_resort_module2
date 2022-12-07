@@ -13,7 +13,9 @@ public interface IService<O> {
 
     void add(O object) throws ExistException, IOException;
 
-    void edit(O object) throws IOException;
+    void edit(O object) throws IOException, ExistException;
 
     void delete(O object) throws NotFoundInDatabase, IOException, NotFoundException;
+
+    boolean checkId (String id) throws IOException;
 }

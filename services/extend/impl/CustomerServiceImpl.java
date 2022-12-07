@@ -65,4 +65,9 @@ public class CustomerServiceImpl implements ICustomerService {
     public void delete(Customer object) throws NotFoundInDatabase {
 
     }
+
+    @Override
+    public boolean checkId(String id) {
+        return false;
+    }
 }

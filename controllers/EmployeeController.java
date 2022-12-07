@@ -1,6 +1,7 @@
 package controllers;
 
 import common.exception.ExistException;
+import common.exception.NotFoundException;
 import common.exception.NotFoundInDatabase;
 import models.person.Employee;
 import services.extend.IEmployeeService;
@@ -41,7 +42,7 @@ public class EmployeeController {
         try {
             try {
                 this.employeeService.delete(employee);
-            } catch (IOException e) {
+            } catch (IOException | NotFoundException e) {
                 throw new RuntimeException(e);
             }
         } catch (NotFoundInDatabase e) {

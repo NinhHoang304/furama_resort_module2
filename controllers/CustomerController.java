@@ -1,6 +1,7 @@
 package controllers;
 
 import common.exception.ExistException;
+import common.exception.NotFoundInDatabase;
 import models.person.Customer;
 import services.extend.ICustomerService;
 import services.extend.impl.CustomerServiceImpl;
@@ -31,7 +32,7 @@ public class CustomerController {
     public void editCustomer(Customer customer) {
         try {
             this.customerService.edit(customer);
-        } catch (IOException e) {
+        } catch (IOException | ExistException e) {
             throw new RuntimeException(e);
         }
     }
