@@ -301,31 +301,31 @@ public class FuramaView {
                                             System.out.println("----Enter information to add new villa----");
 
                                             System.out.println("Enter id facility villa (SVVL-0001): ");
-                                            String idFacilityVilla = validateFacility(this.regexFacility.REGEX_ID_SERVICE);
+                                            String idFacilityVilla = regexFacility.validateFacility(this.regexFacility.REGEX_ID_SERVICE);
 
                                             System.out.println("Enter name service (Villa): ");
-                                            String nameVilla = validateFacility(this.regexFacility.REGEX_NAME_SERVICE);
+                                            String nameVilla = regexFacility.validateFacility(this.regexFacility.REGEX_NAME_SERVICE);
 
                                             System.out.println("Enter usable area ( > 30m2 ): ");
-                                            double usableAreaVilla = Double.parseDouble(validateFacility(this.regexFacility.REGEX_AREA));
+                                            double usableAreaVilla = Double.parseDouble(regexFacility.validateFacility(this.regexFacility.REGEX_AREA));
 
                                             System.out.println("Enter cost for rent villa (vd: 1000 - 5000$): ");
-                                            double costVilla = Double.parseDouble(validateFacility(this.regexFacility.REGEX_RENT_COST));
+                                            double costVilla = Double.parseDouble(regexFacility.validateFacility(this.regexFacility.REGEX_RENT_COST));
 
                                             System.out.println("Enter maximum people for rent villa (0 < people < 20): ");
-                                            int maxPeopleVilla = Integer.parseInt(validateFacility(this.regexFacility.REGEX_MAX_PEOPLE));
+                                            int maxPeopleVilla = Integer.parseInt(regexFacility.validateFacility(this.regexFacility.REGEX_MAX_PEOPLE));
 
                                             System.out.println("Enter rent type (Day, Month, Year): ");
-                                            String rentTypesVilla = validateFacility(this.regexFacility.REGEX_RENT_TYPE);
+                                            String rentTypesVilla = regexFacility.validateFacility(this.regexFacility.REGEX_RENT_TYPE);
 
                                             System.out.println("Enter villa type (Standard|Deluxe|Suite|President): ");
-                                            String villaType = validateFacility(this.regexFacility.REGEX_ROOM_TYPE);
+                                            String villaType = regexFacility.validateFacility(this.regexFacility.REGEX_ROOM_TYPE);
 
                                             System.out.println("Enter pool area (> 30m2): ");
-                                            Double poolArea = Double.parseDouble(validateFacility(this.regexFacility.REGEX_AREA));
+                                            Double poolArea = Double.parseDouble(regexFacility.validateFacility(this.regexFacility.REGEX_AREA));
 
                                             System.out.println("Enter floor of villa: ");
-                                            int floor = Integer.parseInt(validateFacility(this.regexFacility.REGEX_FLOOR));
+                                            int floor = Integer.parseInt(regexFacility.validateFacility(this.regexFacility.REGEX_FLOOR));
 
                                             Villa villa = new Villa(idFacilityVilla, nameVilla, usableAreaVilla, costVilla, maxPeopleVilla,
                                                     rentTypesVilla, villaType, poolArea, floor);
@@ -336,25 +336,25 @@ public class FuramaView {
                                             System.out.println("----Enter information to add new room----");
 
                                             System.out.println("Enter id facility room (SVRO-0001): ");
-                                            String idFacilityRoom = validateFacility(this.regexFacility.REGEX_ID_SERVICE);
+                                            String idFacilityRoom = regexFacility.validateFacility(this.regexFacility.REGEX_ID_SERVICE);
 
                                             System.out.println("Enter name service (Room): ");
-                                            String nameRoom = validateFacility(this.regexFacility.REGEX_NAME_SERVICE);
+                                            String nameRoom = regexFacility.validateFacility(this.regexFacility.REGEX_NAME_SERVICE);
 
                                             System.out.println("Enter usable area ( > 30m2 ): ");
-                                            double usableAreaRoom = Double.parseDouble(validateFacility(this.regexFacility.REGEX_AREA));
+                                            double usableAreaRoom = Double.parseDouble(regexFacility.validateFacility(this.regexFacility.REGEX_AREA));
 
                                             System.out.println("Enter cost for rent room (vd: 500 - 2000$): ");
-                                            double costRoom = Double.parseDouble(validateFacility(this.regexFacility.REGEX_RENT_COST));
+                                            double costRoom = Double.parseDouble(regexFacility.validateFacility(this.regexFacility.REGEX_RENT_COST));
 
                                             System.out.println("Enter maximum people for rent room (0 < people < 20): ");
-                                            int maxPeopleRoom = Integer.parseInt(validateFacility(this.regexFacility.REGEX_MAX_PEOPLE));
+                                            int maxPeopleRoom = Integer.parseInt(regexFacility.validateFacility(this.regexFacility.REGEX_MAX_PEOPLE));
 
                                             System.out.println("Enter rent type (Day, Month, Year): ");
-                                            String rentTypesRoom = validateFacility(this.regexFacility.REGEX_RENT_TYPE);
+                                            String rentTypesRoom = regexFacility.validateFacility(this.regexFacility.REGEX_RENT_TYPE);
 
                                             System.out.println("Enter free service for room (Coffee|Buffet|Spa): ");
-                                            String freeService = validateFacility(this.regexFacility.REGEX_FREE_SERVICE);
+                                            String freeService = regexFacility.validateFacility(this.regexFacility.REGEX_FREE_SERVICE);
 
                                             Room room = new Room(idFacilityRoom, nameRoom, usableAreaRoom, costRoom, maxPeopleRoom, rentTypesRoom, freeService);
                                             this.facilityController.addNewRoom(room);
@@ -437,21 +437,5 @@ public class FuramaView {
                     System.err.println("Invalid option, try input again!");
             }
         } while (true);
-    }
-
-    // TODO validate facility
-    public String validateFacility(String stringRegex) {
-        String temp;
-        while (true){
-            temp = sc.nextLine();
-            if (Pattern.matches(stringRegex, temp)){
-                System.out.println("Add Successful!");
-                break;
-            }else{
-                System.err.println("Input invalid. Please try again!");
-            }
-        }
-
-        return temp;
     }
 }

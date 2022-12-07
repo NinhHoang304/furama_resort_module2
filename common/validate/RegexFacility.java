@@ -1,5 +1,8 @@
 package common.validate;
 
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 public class RegexFacility {
 
     public final String REGEX_ID_SERVICE = "^SV(VL|RO)-[0-9]{4}$";
@@ -14,4 +17,21 @@ public class RegexFacility {
 
     public final String REGEX_BIRTHDAY = "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$";
 
+    private final Scanner sc = new Scanner(System.in);
+
+    // TODO validate facility
+    public String validateFacility(String stringRegex) {
+        String temp;
+        while (true){
+            temp = sc.nextLine();
+            if (Pattern.matches(stringRegex, temp)){
+                System.out.println("Add Successful!");
+                break;
+            }else{
+                System.err.println("Input invalid. Please try again!");
+            }
+        }
+
+        return temp;
+    }
 }
