@@ -1,5 +1,6 @@
 package views;
 
+import common.exception.MyException;
 import common.exception.NotFoundInDatabase;
 import common.validate.RegexFacility;
 import controllers.CustomerController;
@@ -40,7 +41,7 @@ public class FuramaView {
             try {
                 option = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
+                System.err.println("Datatype is not correct, pls try again: ");
                 continue;
             }
 
@@ -60,7 +61,7 @@ public class FuramaView {
                         try {
                             optionEmployee = Integer.parseInt(sc.nextLine());
                         } catch (NumberFormatException e) {
-                            System.out.println(e.getMessage());
+                            System.err.println("Datatype is not correct, pls try again: ");
                             continue;
                         }
                         switch (optionEmployee) {
@@ -156,7 +157,7 @@ public class FuramaView {
                             case 5:
                                 this.displayMainMenu();
                             default:
-                                System.out.println("Invalid option!");
+                                System.err.println("Invalid option, try input again!");
                         }
                     } while (true);
                 case 2:
@@ -173,7 +174,7 @@ public class FuramaView {
                         try {
                             optionCustomer = Integer.parseInt(sc.nextLine());
                         } catch (NumberFormatException e) {
-                            System.out.println(e.getMessage());
+                            System.err.println("Datatype is not correct, pls try again: ");
                             continue;
                         }
 
@@ -255,7 +256,7 @@ public class FuramaView {
                             case 4:
                                 this.displayMainMenu();
                             default:
-                                System.out.println("Invalid option!");
+                                System.err.println("Invalid option, try input again!");
                         }
                     } while (true);
                 case 3:
@@ -272,7 +273,7 @@ public class FuramaView {
                         try {
                             optionFacility = Integer.parseInt(sc.nextLine());
                         } catch (NumberFormatException e) {
-                            System.out.println(e.getMessage());
+                            System.err.println("Datatype is not correct, pls try again: ");
                             continue;
                         }
 
@@ -362,7 +363,7 @@ public class FuramaView {
                                         case 3:
                                             this.displayMainMenu();
                                         default:
-                                            System.out.println("Invalid choice");
+                                            System.err.println("Invalid option, try input again!");
                                     }
                                 } while (true);
                             case 3:
@@ -371,7 +372,7 @@ public class FuramaView {
                             case 4:
                                 this.displayMainMenu();
                             default:
-                                System.out.println("Invalid option!");
+                                System.err.println("Invalid option, try input again!");
                         }
                     } while (true);
                 case 4:
@@ -387,7 +388,7 @@ public class FuramaView {
                         try {
                             optionBooking = Integer.parseInt(sc.nextLine());
                         } catch (NumberFormatException e) {
-                            System.out.println(e.getMessage());
+                            System.err.println("Datatype is not correct, pls try again: ");
                             continue;
                         }
 
@@ -399,7 +400,7 @@ public class FuramaView {
                             case 3:
                                 this.displayMainMenu();
                             default:
-                                System.out.println("Invalid option!");
+                                System.err.println("Invalid option, try input again!");
                         }
                     } while (true);
                 case 5:
@@ -415,7 +416,7 @@ public class FuramaView {
                         try {
                             optionPromotion = Integer.parseInt(sc.nextLine());
                         } catch (NumberFormatException e) {
-                            System.out.println(e.getMessage());
+                            System.err.println("Datatype is not correct, pls try again: ");
                             continue;
                         }
 
@@ -427,13 +428,13 @@ public class FuramaView {
                             case 3:
                                 this.displayMainMenu();
                             default:
-                                System.out.println("Invalid option!");
+                                System.err.println("Invalid option, try input again!");
                         }
                     } while (true);
                 case 6:
                     System.exit(1);
                 default:
-                    System.out.println("Invalid option!");
+                    System.err.println("Invalid option, try input again!");
             }
         } while (true);
     }
