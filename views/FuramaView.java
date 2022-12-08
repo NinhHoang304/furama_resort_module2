@@ -129,12 +129,17 @@ public class FuramaView {
 
                                 break;
                             case 3:
-                                System.out.println("Input employee code to delete:");
-                                String codeEmp = sc.nextLine();
+                                try{
+                                    System.out.println("Input employee code to delete:");
+                                    String codeEmp = sc.nextLine();
 
-                                Employee employeeCode = new Employee(codeEmp);
+                                    Employee employeeCode = new Employee(codeEmp);
 
-                                this.employeeController.deleteEmployee(employeeCode);
+                                    this.employeeController.deleteEmployee(employeeCode);
+                                } catch (NumberFormatException e) {
+                                    System.err.println("Format number invalid, pls input again");
+                                    continue;
+                                }
                                 break;
                             case 4:
                                 System.out.println("----Please enter employee code to edit----");
