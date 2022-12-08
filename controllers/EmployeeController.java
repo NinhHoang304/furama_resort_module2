@@ -33,7 +33,7 @@ public class EmployeeController {
     public void editEmployee(Employee employee) {
         try {
             this.employeeService.edit(employee);
-        } catch (IOException e) {
+        } catch (IOException | ExistException e) {
             throw new RuntimeException(e);
         }
     }

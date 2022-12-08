@@ -1,7 +1,5 @@
 package controllers;
 
-import common.exception.ExistException;
-import models.facility.Facility;
 import models.facility.Room;
 import models.facility.Villa;
 import services.extend.IFacilityService;
@@ -15,7 +13,7 @@ public class FacilityController {
 
     public void displayFacility() {
         try {
-            this.facilityService.getFacility();
+            this.facilityService.displayFacility();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

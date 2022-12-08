@@ -88,10 +88,10 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
         if (deleteEmployee == null) {
             throw new NotFoundException("Employee not exist, pls try input again to delete");
+        }else {
+            employeeList.remove(deleteEmployee);
+            this.employeeIOService.writeFile(PATH_FILE_EMPLOYEE, employeeList);
         }
-
-        employeeList.remove(deleteEmployee);
-        this.employeeIOService.writeFile(PATH_FILE_EMPLOYEE, employeeList);
     }
 
     @Override

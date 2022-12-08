@@ -80,9 +80,18 @@ public class FuramaView {
                                 System.out.println("----Enter information to add new employee----");
 
                                 try {
+                                    List<Employee> employees = this.employeeController.displayEmployee();
                                     System.out.println("Enter employee code: ");
                                     String empCode = sc.nextLine();
-
+                                    //TODO check id
+                                    boolean flag = true;
+                                    for (Employee employee : employees) {
+                                        flag = Objects.equals(employee.getEmployeeCode(), empCode);
+                                    }
+                                    if (flag){
+                                        System.err.println("This employee code existed");
+                                        break;
+                                    }
                                     System.out.println("Enter employee name:");
                                     String empName = sc.nextLine();
 
@@ -132,7 +141,7 @@ public class FuramaView {
 
                                 try {
                                     List<Employee> employees = this.employeeController.displayEmployee();
-
+                                    //TODO check id
                                     System.out.println("Enter employee code to edit this employee:");
                                     String empCodeNew = sc.nextLine();
                                     boolean flag = true;
@@ -140,7 +149,7 @@ public class FuramaView {
                                         flag = Objects.equals(employee.getEmployeeCode(), empCodeNew);
                                     }
                                     if (!flag) {
-                                        System.err.println("This employee code not exist, Input again");
+                                        System.err.println("This employee code not exist");
                                         break;
                                     }
                                     System.out.println("Enter new employee name:");
@@ -214,8 +223,18 @@ public class FuramaView {
                                 System.out.println("----Enter information to add new customer----");
 
                                 try {
+                                    List<Customer> customers = this.customerController.displayCustomer();
                                     System.out.println("Enter customer code:");
                                     String cusCode = sc.nextLine();
+                                    //TODO check id
+                                    boolean flag = true;
+                                    for (Customer customer : customers){
+                                        flag = Objects.equals(customer.getCustomerCode(), cusCode);
+                                    }
+                                    if (flag){
+                                        System.err.println("This customer code existed");
+                                        break;
+                                    }
 
                                     System.out.println("Enter customer name:");
                                     String cusName = sc.nextLine();
@@ -253,8 +272,18 @@ public class FuramaView {
                                 System.out.println("----Please enter customer code to edit----");
 
                                 try {
+                                    List<Customer> customers = this.customerController.displayCustomer();
                                     System.out.println("Enter customer code to edit this customer:");
                                     String cusCodeNew = sc.nextLine();
+                                    //TODO check id
+                                    boolean flag = true;
+                                    for (Customer customer : customers){
+                                        flag = Objects.equals(customer.getCustomerCode(), cusCodeNew);
+                                    }
+                                    if (!flag){
+                                        System.err.println("This customer code not exist");
+                                        break;
+                                    }
 
                                     System.out.println("Enter new customer name:");
                                     String cusNameNew = sc.nextLine();

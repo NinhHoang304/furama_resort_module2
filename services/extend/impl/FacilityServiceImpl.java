@@ -44,7 +44,7 @@ public class FacilityServiceImpl implements IFacilityService {
     }
 
     @Override
-    public void getFacility() throws IOException {
+    public void displayFacility() throws IOException {
         // TODO get all villa list in villa.csv -> push all villa list in facility list
         Map<Villa, Integer> villaList = this.villaIOService.readFile(PATH_FILE_VILLA);
         facilityList.putAll(villaList);
@@ -53,7 +53,7 @@ public class FacilityServiceImpl implements IFacilityService {
         facilityList.putAll(roomList);
         //TODO display all
         for (Map.Entry<Facility, Integer> entry : facilityList.entrySet()) {
-            System.out.println(entry);
+            System.out.println(entry.getKey() + " Used: " + entry.getValue() + " time");
         }
     }
 
@@ -68,7 +68,7 @@ public class FacilityServiceImpl implements IFacilityService {
         //TODO display list maintenance when value >= 5
         for (Map.Entry<Facility, Integer> entry : facilityList.entrySet()) {
             if (entry.getValue() >= 5) {
-                System.out.println(entry);
+                System.out.println(entry.getKey() + " Used: " + entry.getValue() + " time");
             }
         }
     }
